@@ -1,27 +1,26 @@
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import {Home} from './pages/Home';
-import {Details} from './pages/Details';
-import {Provider} from 'react-redux';
-import {store} from './store';
-
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import CityList from './pages/CityList';
+import CityDetails from './pages/CityDetails';
 import './App.css';
+import Favorites from './pages/Favorites';
 
-const App = () => {
-    return (
-        <Provider store={store}>
-            <Router>
-                <div className="App">
-                    <header>
-                        <h1>Weather App</h1>
-                    </header>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/details" element={<Details />} />
-                    </Routes>
-                </div>
-            </Router>
-        </Provider>
-    );
-};
+function App() {
+  return (
+    <Provider store={store}>
+      <Router>
+        <div className="app-container">
+          <Routes>
+            <Route path="/" element={<CityList />} />
+            <Route path="/city/:id" element={<CityDetails />} />
+            <Route path="/favorites" element={<Favorites />} />
+          </Routes>
+        </div>
+      </Router>
+    </Provider>
+  );
+}
 
 export default App;
